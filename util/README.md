@@ -1,7 +1,7 @@
 # StringUtils plugin
 ## Class
-- [StringUtils.java](/src/main/java/by/kihtenkoolga/StringUtils.java)
-- [StringUtilsTest.java](/src/test/java/by/kihtenkoolga/StringUtilsTest.java)
+- [StringUtils.java](/util/src/main/java/by/kihtenkoolga/StringUtils.java)
+- [StringUtilsTest.java](/util/src/test/java/by/kihtenkoolga/StringUtilsTest.java)
 
 ### Build project
 ```
