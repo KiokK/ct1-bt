@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'by.kiok'
+version = '1.0'
+
+application {
+    mainClass = "${project.group}.App"
+}
+
+repositories {
+    mavenLocal()
+}
+
+dependencies {
+    implementation project(':core')
+}
