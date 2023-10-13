@@ -16,3 +16,40 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
+
+test {
+    useJUnitPlatform()
+}
+
+class ReportsPlugin implements Plugin<Project> {
+
+    void apply(Project project) {
+        project.tasks.register("deleteReportDir") {
+            doFirst {
+                project.delete "$project.rootDir/my-reports"
+            }
+        }
+
+        project.tasks.register('takeReports') {
+            dependsOn 'deleteReportDir'
+
+            onlyIf {
+                project.file("$project.buildDir").exists()
+            }
+            doFirst {
+                project.copy {
+                    from("$project.buildDir/reports")
+                    into("$project.rootDir/my-reports/reports")
+                }
+            }
+            doLast {
+                project.copy {
+                    from("$project.buildDir/test-results")
+                    into("$project.rootDir/my-reports/test-results")
+                }
+            }
+        }
+    }
+}
+
+apply plugin: ReportsPlugin
