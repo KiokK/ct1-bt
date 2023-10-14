@@ -9,5 +9,4 @@ build/
 !**/src/test/**/build/
 
 #### Generated - local ####
-/jar-lib
 /my-reports

@@ -7,7 +7,7 @@
 ```
 ./gradlew build
 ```
-Local generated .jar: [/jar-lib/util-1.3.5.jar](/jar-lib)
+Local generated .jar: [/build/libs/util-1.3.5.jar](/build/libs/)
 ### Running tests
 ```
 gradle test --tests 'by.kihtenkoolga.*'

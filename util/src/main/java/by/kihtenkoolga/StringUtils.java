@@ -1,5 +1,8 @@
 package by.kihtenkoolga;
 
+/**
+ * Класс обработки строк
+ */
 public class StringUtils {
 
     private static boolean isNumeric(String str) {

@@ -18,15 +18,21 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 jar {
     manifest {
         attributes('Implementation-Title': project.name,
                 'Implementation-Version': project.version)
     }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    destinationDirectory.set(file("$rootDir/jar-lib"))
+//    dependsOn javadocJar, sourcesJar
+//    from {
+//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+//    }
 }
 
 
