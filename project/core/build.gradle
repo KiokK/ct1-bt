@@ -1,55 +1,15 @@
+import by.kiok.plugin.ReportsPlugin
+
 plugins {
-    id 'java'
+    id 'myproject.java-conventions'
 }
 
-group = 'by.kiok'
-version = '1.0'
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
+apply plugin: ReportsPlugin
 
 dependencies {
     implementation "by.kihtenkoolga:util:1.3.5"
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {
     useJUnitPlatform()
 }
-
-class ReportsPlugin implements Plugin<Project> {
-
-    void apply(Project project) {
-        project.tasks.register("deleteReportDir") {
-            doFirst {
-                project.delete "$project.rootDir/my-reports"
-            }
-        }
-
-        project.tasks.register('takeReports') {
-            dependsOn 'deleteReportDir'
-
-            onlyIf {
-                project.file("$project.buildDir").exists()
-            }
-            doFirst {
-                project.copy {
-                    from("$project.buildDir/reports")
-                    into("$project.rootDir/my-reports/reports")
-                }
-            }
-            doLast {
-                project.copy {
-                    from("$project.buildDir/test-results")
-                    into("$project.rootDir/my-reports/test-results")
-                }
-            }
-        }
-    }
-}
-
-apply plugin: ReportsPlugin

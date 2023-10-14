@@ -2,4 +2,3 @@ rootProject.name = 'project'
 
 include 'app'
 include 'core'
-

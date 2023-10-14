@@ -1,17 +1,10 @@
 plugins {
-    id 'java'
+    id 'myproject.java-conventions'
     id 'application'
 }
 
-group = 'by.kiok'
-version = '1.0'
-
 application {
     mainClass = "${project.group}.App"
-}
-
-repositories {
-    mavenLocal()
 }
 
 dependencies {
