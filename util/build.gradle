@@ -24,17 +24,17 @@ java {
 }
 
 jar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     manifest {
         attributes('Implementation-Title': project.name,
                 'Implementation-Version': project.version)
     }
-//    dependsOn javadocJar, sourcesJar
-//    from {
-//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-//        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
-//    }
+    dependsOn javadocJar, sourcesJar
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.compileClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
 }
-
 
 test {
     useJUnitPlatform()
@@ -50,8 +50,6 @@ test {
 }
 
 reporting.baseDir = "my-reports"
-
-
 tasks.register('showDirs') {
     doLast {
         logger.quiet(rootDir.toPath().relativize(project.reportsDir.toPath()).toString())
