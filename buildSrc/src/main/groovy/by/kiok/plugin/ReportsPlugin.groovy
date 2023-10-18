@@ -8,7 +8,7 @@ class ReportsPlugin implements Plugin<Project> {
     void apply(Project project) {
         project.tasks.register("deleteReportDir") {
             doFirst {
-                project.delete "$project.rootDir/my-reports"
+                project.delete "${project.rootDir}/my-reports"
             }
         }
 
@@ -16,18 +16,12 @@ class ReportsPlugin implements Plugin<Project> {
             dependsOn 'deleteReportDir'
 
             onlyIf {
-                project.file("$project.buildDir").exists()
+                project.file("${project.getRootProject().buildDir}").exists()
             }
             doFirst {
                 project.copy {
-                    from("$project.buildDir/reports")
-                    into("$project.rootDir/my-reports/reports")
-                }
-            }
-            doLast {
-                project.copy {
-                    from("$project.buildDir/test-results")
-                    into("$project.rootDir/my-reports/test-results")
+                    from("${project.getRootProject().buildDir}/reports")
+                    into("${project.rootDir}/my-reports/reports")
                 }
             }
         }
