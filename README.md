@@ -6,7 +6,7 @@
 - [core](/core) - use util by jar implementation, [Utils.java](/core/src/main/java/by/kiok/Utils.java) +
   [UtilsTest.java](/core/src/test/java/by/kiok/UtilsTest.java)
 - [app](/app) - use core by module implementation, [App.java](/app/src/main/java/by/kiok/App.java) with *main()*
-
+- [buildSrs](/buildSrc) - common settings, plugin [ReportsPlugin.groovy](/buildSrc/src/main/groovy/by/kiok/plugin/ReportsPlugin.groovy)
 ## Build project
 - First variant (or rebuild):
     ```
