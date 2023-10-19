@@ -1,10 +1,9 @@
-import by.kiok.plugin.ReportsPlugin
 plugins {
     id 'myproject.java-conventions'
     id 'application'
     id 'test-report-aggregation'
+    id 'report-kiok'
 }
-apply plugin: ReportsPlugin
 
 application {
     mainClass = "${project.group}.App"
