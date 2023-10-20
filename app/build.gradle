@@ -1,0 +1,35 @@
+plugins {
+    id 'myproject.java-conventions'
+    id 'application'
+    id 'test-report-aggregation'
+    id 'report-kiok'
+}
+
+application {
+    mainClass = "${project.group}.App"
+}
+
+dependencies {
+    implementation project(':core')
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    manifest {
+        attributes(
+                'Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Main-Class': "${project.group}.App"
+        )
+    }
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+    destinationDirectory.set(file("$rootDir/jar-lib/app"))
+}
